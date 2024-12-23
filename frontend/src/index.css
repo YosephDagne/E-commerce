@@ -8,14 +8,17 @@ a.active hr {
 * {
   font-size: Outfit;
 }
-body {
-  background-color: #FFF8F0;
-}
+/* body {
+  background-color: #fff8f0;
+} */
 
 .prata-regular {
   font-family: "Prata", serif;
   font-weight: 400;
   font-style: normal;
+}
+::-webkit-scrollbar {
+  display: none;
 }
 @media (max-width: 640px) {
   a.active {
