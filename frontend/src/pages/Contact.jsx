@@ -1,6 +1,7 @@
 import React from "react";
 import Title from "../components/Title";
 import { assets } from "../assets/assets";
+import NewsLetterBox from "../components/NewsLetterBox";
 
 const Contact = () => {
   return (
@@ -16,14 +17,23 @@ const Contact = () => {
         />
         <div className="flex flex-col justify-center items-start gap-6">
           <p className="font-semibold text-xl text-gray-600 ">Our Store </p>
-          <p className="text-gray-500">12345 abc Station <br /> suite 345 Addiss Abeba , Ethiopia</p>
-          <p className="text-gray-500">Tel: +251 25 85 78 10 <br />Email: josefdagne5@gmail.com</p>
+          <p className="text-gray-500">
+            12345 abc Station <br /> suite 345 Addiss Abeba , Ethiopia
+          </p>
+          <p className="text-gray-500">
+            Tel: +251 25 85 78 10 <br />
+            Email: josefdagne5@gmail.com
+          </p>
           <p>Careers at .... </p>
-          <p className="text-gray-500">Learn more about our teams and job openings</p>
-          <p></p>
-
+          <p className="text-gray-500">
+            Learn more about our teams and job openings
+          </p>
+          <button className="border border-black px-4 text-sm hover:text-white hover:bg-black transition-all duration-500 py-4">
+            Explore Jobs
+          </button>
         </div>
       </div>
+      <NewsLetterBox />
     </div>
   );
 };
