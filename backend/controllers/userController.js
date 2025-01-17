@@ -6,11 +6,30 @@ import jwt from "jsonwebtoken";
 // Or destructure `sign` from `jwt`
 const { sign } = jwt;
 
-const createToken = () => {
-  return jwt, sign({ id }, process.env.JWT_SECRET);
+const createToken = (id) => {
+  return jwt.sign({ id }, process.env.JWT_SECRET);
 };
 // Route for user login
-const loginUser = async (req, res) => {};
+const loginUser = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    const user = await userModel.findOne({ email });
+    if (!user) {
+      return res.json({ success: false, message: "User not found" });
+    }
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (isMatch) {
+      const token = createToken(user._id);
+      return res.json({ success: true, token });
+    } else {
+      return res.json({ success: false, message: "Invalid password" });
+    }
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: error.message });
+  }
+};
 
 // Route for user registration
 const registerUser = async (req, res) => {
@@ -33,7 +52,7 @@ const registerUser = async (req, res) => {
     if (password.length < 6) {
       return res.json({
         success: false,
-        message: "Please enter strong password",
+        message: "The password should be at least 6 characters long",
       });
     }
 
@@ -52,7 +71,8 @@ const registerUser = async (req, res) => {
     const token = createToken(user._id);
     res.json({ success: true, token });
   } catch (error) {
-    console.error(error);
+    console.log(error);
+    res.json({ success: false, message: error.message });
   }
 };
 
