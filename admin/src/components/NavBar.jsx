@@ -1,11 +1,14 @@
 import React from "react";
 import { assets } from "../assets/assets";
 
-const NavBar = () => {
+const NavBar = ({ setToken }) => {
   return (
     <div className="flex items-center py-2 px-[4%] justify-between">
       <img className="w-[max(5%,80px)]" src={assets.logo} alt="" />
-      <button className="bg-gray-600 text-white px-2 py-5 sm:px-7 sm:py-2 rounded-full text-sm sm:text-sm mt-5">
+      <button
+        onClick={() => setToken("")}
+        className="bg-gray-600 text-white px-2 py-5 sm:px-7 sm:py-2 rounded-full text-sm sm:text-sm mt-5"
+      >
         Logout
       </button>
     </div>
