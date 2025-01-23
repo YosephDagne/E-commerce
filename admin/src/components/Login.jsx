@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 import { backendUrl } from "../App";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
+// eslint-disable-next-line react/prop-types
 const Login = ({setToken}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
