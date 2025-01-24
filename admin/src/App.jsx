@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import NavBar from "./components/NavBar";
 import SideBar from "./components/SideBar";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Add from "./pages/Add";
 import List from "./pages/List";
 import Orders from "./pages/Orders";
@@ -9,7 +9,6 @@ import Login from "./components/Login";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-// eslint-disable-next-line react-refresh/only-export-components
 export const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 const App = () => {
@@ -36,7 +35,6 @@ const App = () => {
                 <Route path="/add" element={<Add token={token} />} />
                 <Route path="/list" element={<List token={token} />} />
                 <Route path="/order" element={<Orders token={token} />} />
-                <Route path="*" element={<Navigate to="/list" />} />
               </Routes>
             </div>
           </div>
