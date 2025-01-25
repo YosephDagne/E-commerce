@@ -13,7 +13,6 @@ const productRouter = express.Router();
 productRouter.post(
   "/add",
   adminAuth,
-  addProduct,
   upload.fields([
     { name: "image1", maxCount: 1 },
     { name: "image2", maxCount: 1 },
