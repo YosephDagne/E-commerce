@@ -8,7 +8,6 @@ export const ShopContext = createContext();
 const ShopContextProvider = (props) => {
   const currency = "$";
   const delivery_fee = 10;
-
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const [search, setSearch] = useState("");
   const [showSearch, setShowSearch] = useState(false);
@@ -77,8 +76,18 @@ const ShopContextProvider = (props) => {
   const getProductsData = async () => {
     try {
       const response = await axios.get(backendUrl + "/api/product/list");
-      console.log(response.data);
-    } catch (error) {}
+
+
+      if (response.data.success) {
+        setProducts(response.data.products);
+      } else {
+        toast.error(response.data.message);
+      }
+
+    } catch (error) {
+      console.log(error);
+      toast.error(error.messsge);
+    }
   };
 
   useEffect(() => {
