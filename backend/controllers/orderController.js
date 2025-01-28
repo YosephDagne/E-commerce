@@ -1,4 +1,4 @@
-import orderMOdel from "../models/orderModel.js";
+import orderModel from "../models/orderModel.js"; // Fixed capitalization typo
 import userModel from "../models/userModel.js";
 
 // Placing order cash on delivery method
@@ -10,11 +10,11 @@ const placeOrder = async (req, res) => {
       items,
       address,
       amount,
-      paymentMethod: "COD",
+      paymentMethod: "COD", // Cash on Delivery
       payment: false,
       date: Date.now(),
     };
-    const newOrder = new orderMOdel(orderData);
+    const newOrder = new orderModel(orderData); 
     await newOrder.save();
     await userModel.findByIdAndUpdate(userId, { cartData: {} });
     res.json({ success: true, message: "Order placed successfully" });
@@ -25,19 +25,29 @@ const placeOrder = async (req, res) => {
 };
 
 // Placing order using Stripe method
-const placeOrderStripe = async (req, res) => {};
+const placeOrderStripe = async (req, res) => {
+  // Implementation for placing order using Stripe
+};
 
 // Placing order using Razorpay method
-const placeOrderRazorpay = async (req, res) => {};
+const placeOrderRazorpay = async (req, res) => {
+  // Implementation for placing order using Razorpay
+};
 
 // All Orders data for Admin Panel
-const allOrders = async (req, res) => {};
+const allOrders = async (req, res) => {
+  // Implementation to fetch all orders for Admin
+};
 
 // User Order data for Frontend
-const userOrders = async (req, res) => {};
+const userOrders = async (req, res) => {
+  // Implementation to fetch orders for the frontend (user-specific)
+};
 
 // Update Order Status for Admin Panel
-const updateStatus = async (req, res) => {};
+const updateStatus = async (req, res) => {
+  // Implementation to update the order status for Admin
+};
 
 export {
   placeOrder,
