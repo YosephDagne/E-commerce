@@ -14,7 +14,7 @@ const placeOrder = async (req, res) => {
       payment: false,
       date: Date.now(),
     };
-    const newOrder = new orderModel(orderData); 
+    const newOrder = new orderModel(orderData);
     await newOrder.save();
     await userModel.findByIdAndUpdate(userId, { cartData: {} });
     res.json({ success: true, message: "Order placed successfully" });
@@ -41,7 +41,14 @@ const allOrders = async (req, res) => {
 
 // User Order data for Frontend
 const userOrders = async (req, res) => {
-  // Implementation to fetch orders for the frontend (user-specific)
+  try {
+    const { userId } = req.body;
+    const orders = await orderModel.find({ userId });
+    res.json({ success: true, orders });
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: error.message });
+  }
 };
 
 // Update Order Status for Admin Panel
