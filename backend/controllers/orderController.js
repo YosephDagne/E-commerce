@@ -1,6 +1,6 @@
 import orderModel from "../models/orderModel.js"; // Fixed capitalization typo
 import userModel from "../models/userModel.js";
-import Chapa from "chapa-sdk";
+import Chapa from "chapa-nodejs"; 
 
 
 //gate way initialize
@@ -33,7 +33,9 @@ const placeOrder = async (req, res) => {
 
 // Placing order using Stripe method
 const placeOrderChapa = async (req, res) => {
-  // Implementation for placing order using Stripe
+
+
+  
 };
 
 // Placing order using Razorpay method
