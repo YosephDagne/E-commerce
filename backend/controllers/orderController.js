@@ -5,7 +5,7 @@ import Chapa from "chapa-sdk";
 
 //gate way initialize
 
-const chapa = new Chapa()
+const chapa = new Chapa(process.env.CHAPA_SECRET_KEY);
 
 
 // Placing order cash on delivery method
@@ -32,7 +32,7 @@ const placeOrder = async (req, res) => {
 };
 
 // Placing order using Stripe method
-const placeOrderStripe = async (req, res) => {
+const placeOrderChapa = async (req, res) => {
   // Implementation for placing order using Stripe
 };
 
@@ -78,7 +78,7 @@ const updateStatus = async (req, res) => {
 
 export {
   placeOrder,
-  placeOrderStripe,
+  placeOrderChapa,
   placeOrderRazorpay,
   allOrders,
   userOrders,
