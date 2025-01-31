@@ -1,5 +1,12 @@
 import orderModel from "../models/orderModel.js"; // Fixed capitalization typo
 import userModel from "../models/userModel.js";
+import Chapa from "chapa-sdk";
+
+
+//gate way initialize
+
+const chapa = new Chapa()
+
 
 // Placing order cash on delivery method
 const placeOrder = async (req, res) => {
