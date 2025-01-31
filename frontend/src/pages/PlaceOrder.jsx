@@ -204,7 +204,7 @@ const PlaceOrder = () => {
                   method === "stripe" ? "bg-green-500" : ""
                 }`}
               ></p>
-              <img className="h-5 mx-4" src={assets.stripe_logo} alt="" />
+              <img className="h-5 mx-8" src={assets.chapa} alt="" />
             </div>
             <div
               onClick={() => setMethod("razorpay")}
