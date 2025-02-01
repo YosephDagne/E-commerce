@@ -69,12 +69,26 @@ const PlaceOrder = () => {
             orderData,
             { headers: { token } }
           );
-          console.log(response.data);
           if (response.data.success) {
             setCartItems({});
             navigate("/orders");
           } else {
             toast.error(response.data.message);
+          }
+
+          break;
+        case "stripe":
+          // API Calls for Stripe Payment Order
+          const stripeResponse = await axios.post(
+            backendUrl + "/api/order/stripe",
+            orderData,
+            { headers: { token } }
+          );
+          if (stripeResponse.data.success) {
+            const { session_url } = stripeResponse.data;
+            window.location.replace(session_url);
+          } else {
+            toast.error(stripeResponse.data.message);
           }
 
           break;
@@ -204,7 +218,7 @@ const PlaceOrder = () => {
                   method === "stripe" ? "bg-green-500" : ""
                 }`}
               ></p>
-              <img className="h-5 mx-8" src={assets.chapa} alt="" />
+              <img className="h-5 mx-8" src={assets.stripe_logo} alt="" />
             </div>
             <div
               onClick={() => setMethod("razorpay")}
