@@ -3,7 +3,7 @@ import userModel from "../models/userModel.js";
 import Stripe from "stripe";
 
 // globale Variable
-const currency = "INR";
+const currency = "usd";
 const delivery_fee = 10;
 
 //gate way initialize
@@ -86,27 +86,26 @@ const placeOrderStripe = async (req, res) => {
     res.json({ success: true, session_url: session.url });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ success: false, message: error.message });
+    res.json({ success: false, message: error.message });
   }
 };
 
 // Verify stripe order
 const verifyStripeOrder = async (req, res) => {
-  const { order_Id, success, userId } = req.body;
+  const { orderId, success, userId } = req.body;
 
   try {
     if (success === "true") {
       await orderModel.findByIdAndUpdate(orderId, { payment: true });
-      await userModel.findByIdAndUpdate(userId, { cartData: {} })
-      res.json({success: true })
-    }
-    else {
-      await orderModel.findByIdAndDelete(order_Id)
-      res.json({success: false})
+      await userModel.findByIdAndUpdate(userId, { cartData: {} });
+      res.json({ success: true });
+    } else {
+      await orderModel.findByIdAndDelete(orderId);
+      res.json({ success: false });
     }
   } catch (error) {
-     console.error(error);
-     res.status(500).json({ success: false, message: error.message });
+    console.log(error);
+    res.json({ success: false, message: error.message });
   }
 };
 
@@ -157,5 +156,5 @@ export {
   allOrders,
   userOrders,
   updateStatus,
-  verifyStripeOrder
+  verifyStripeOrder,
 };
