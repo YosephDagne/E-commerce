@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 
 const Verify = () => {
   const { navigate, token, setCartItems, backendUrl } = useContext(ShopContext);
-const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const success = searchParams.get("success");
   const orderId = searchParams.get("orderId");
@@ -22,7 +22,6 @@ const [searchParams, setSearchParams] = useSearchParams();
         { headers: { token } }
       );
 
-
       if (response.data.success) {
         setCartItems({});
         navigate("/orders");
@@ -30,7 +29,7 @@ const [searchParams, setSearchParams] = useSearchParams();
         navigate("/cart");
       }
     } catch (error) {
-      console.error(error);
+      console.log(error);
       toast.error(error.message);
     }
   };
@@ -38,10 +37,7 @@ const [searchParams, setSearchParams] = useSearchParams();
   useEffect(() => {
     verifyPayment();
   }, [token]);
-  return (
-    <div>
-    </div>
-  );
+  return <div></div>;
 };
 
 export default Verify;
