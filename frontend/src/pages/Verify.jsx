@@ -34,6 +34,26 @@ const Verify = () => {
     }
   };
 
+  const verfiyChapa = async () => { 
+    try {
+      if (!token) {
+        return null;
+      }
+      
+      const response = await axios.post(backendUrl + "/api/order/verifyChapaOrder", { orderId }, { headers: { token } });
+      if (response.data.success) {
+        setCartItems({});
+        navigate("/orders");
+      }
+      else { 
+        navigate("/cart");
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error(error.message);
+      
+    }
+  }
 
   useEffect(() => {
     verifyPayment();
