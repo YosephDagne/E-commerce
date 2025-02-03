@@ -92,6 +92,22 @@ const PlaceOrder = () => {
           }
 
           break;
+        case "chapa":
+          // API Calls for Chapa Payment Order
+          const chapaResponse = await axios.post(
+            backendUrl + "/api/order/chapa",
+            orderData,
+            { headers: { token } }
+          );
+          if (chapaResponse.data.success) {
+            const { payment_url } = chapaResponse.data;
+            // Redirect user to Chapa payment page
+            window.location.replace(payment_url);
+          } else {
+            toast.error(chapaResponse.data.message);
+          }
+          break;
+
         default:
           break;
       }
@@ -229,7 +245,7 @@ const PlaceOrder = () => {
                   method === "razorpay" ? "bg-green-500" : ""
                 }`}
               ></p>
-              <img className="h-5 mx-4" src={assets.razorpay_logo} alt="" />
+              <img className="h-5 mx-4" src={assets.chapa} alt="" />
             </div>
             <div
               onClick={() => setMethod("cod")}
