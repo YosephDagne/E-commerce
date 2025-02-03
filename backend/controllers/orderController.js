@@ -1,6 +1,7 @@
 import orderModel from "../models/orderModel.js"; // Fixed capitalization typo
 import userModel from "../models/userModel.js";
 import Stripe from "stripe";
+import Chapa from "chapa"
 
 // globale Variable
 const currency = "usd";
@@ -9,6 +10,8 @@ const delivery_fee = 10;
 //gate way initialize
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+
+const chapainstance = new Chapa(process.env.CHAPA_SECRET_KY);
 
 // Placing order cash on delivery method
 const placeOrder = async (req, res) => {
@@ -113,6 +116,12 @@ const verifyStripeOrder = async (req, res) => {
 const placeOrderRazorpay = async (req, res) => {
   // Implementation for placing order using Razorpay
 };
+
+// Placing order using Chapa method
+
+const placeOrderChapa = async (req, res) => { 
+
+}
 
 // All Orders data for Admin Panel
 const allOrders = async (req, res) => {
