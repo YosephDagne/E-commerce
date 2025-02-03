@@ -9,6 +9,7 @@ placeOrderChapa,
   userOrders,
   updateStatus,
   verifyStripeOrder,
+  verifyChapaOrder,
 } from "../controllers/orderController.js";
 
 // Admin Features
@@ -28,5 +29,6 @@ orderRouter.post("/userorders", authUser, userOrders);
 
 // verify payment
 orderRouter.post("/verifyStripeOrder", authUser, verifyStripeOrder);
+orderRouter.post("/verifyChapaOrder", authUser, verifyChapaOrder);
 
 export default orderRouter;
