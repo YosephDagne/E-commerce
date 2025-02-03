@@ -4,7 +4,7 @@ import authUser from "../middleware/auth.js";
 import {
   placeOrder,
   placeOrderStripe,
-  placeOrderRazorpay,
+  placeOrderChapa,
   allOrders,
   userOrders,
   updateStatus,
@@ -20,7 +20,7 @@ orderRouter.post("/status", adminAuth, updateStatus);
 
 orderRouter.post("/place", authUser, placeOrder);
 orderRouter.post("/stripe", authUser, placeOrderStripe);
-orderRouter.post("/razorpay", authUser, placeOrderRazorpay);
+orderRouter.post("/chapa", authUser, placeOrderChapa);
 
 // User Features
 
@@ -28,5 +28,6 @@ orderRouter.post("/userorders", authUser, userOrders);
 
 // verify payment
 orderRouter.post("/verifyStripeOrder", authUser, verifyStripeOrder);
+
 
 export default orderRouter;
