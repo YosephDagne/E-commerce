@@ -1,7 +1,7 @@
-import orderModel from "../models/orderModel.js"; // Fixed capitalization typo
+import orderModel from "../models/orderModel.js";
 import userModel from "../models/userModel.js";
 import Stripe from "stripe";
-import Chapa from "chapa"
+import Chapa from "chapa";
 
 // globale Variable
 const currency = "usd";
@@ -11,7 +11,7 @@ const delivery_fee = 10;
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
-const chapa = new Chapa(process.env.CHAPA_SECRET_KY);
+const chapa = new Chapa(process.env.CHAPA_SECRET_KEY);
 
 // Placing order cash on delivery method
 const placeOrder = async (req, res) => {
@@ -23,7 +23,7 @@ const placeOrder = async (req, res) => {
       items,
       address,
       amount,
-      paymentMethod: "COD", // Cash on Delivery
+      paymentMethod: "COD", 
       payment: false,
       date: Date.now(),
     };
@@ -51,7 +51,7 @@ const placeOrderStripe = async (req, res) => {
       items,
       address,
       amount,
-      paymentMethod: "stripe", // Stripe payment method
+      paymentMethod: "stripe", 
       payment: false,
       date: Date.now(),
     };
@@ -112,56 +112,9 @@ const verifyStripeOrder = async (req, res) => {
   }
 };
 
-// Placing order using Razorpay method
-
-
 // Placing order using Chapa method
 
-const placeOrderChapa = async (req, res) => {
-  // Placing order using Chapa method
-  const placeOrderChapa = async (req, res) => {
-    try {
-      const { userId, items, amount, address } = req.body;
-
-      const { origin } = req.headers;
-
-      const orderData = {
-        userId,
-        items,
-        address,
-        amount,
-        paymentMethod: "chapa", // Chapa payment method
-        payment: false,
-        date: Date.now(),
-      };
-
-      const newOrder = new orderModel(orderData);
-      await newOrder.save();
-
-      // Prepare items for Chapa session
-      const orderDetails = {
-        amount: (amount + delivery_fee) * 100, 
-        currency: currency.toUpperCase(), 
-        email: req.body.email, 
-        orderId: newOrder._id,
-        callback_url: `${origin}/verify?paymentMethod=chapa&orderId=${newOrder._id}`,
-      };
-
-      // Create Chapa payment session
-      const chapaSession = await chapa.paymentRequest(orderDetails);
-
-      // Return the Chapa payment URL to the client
-      if (chapaSession && chapaSession.payment_url) {
-        res.json({ success: true, session_url: chapaSession.payment_url });
-      } else {
-        throw new Error("Failed to create Chapa payment session");
-      }
-    } catch (error) {
-      console.error(error);
-      res.json({ success: false, message: error.message });
-    }
-  };
-}
+const placeOrderChapa = async (req, res) => { }
 
 // All Orders data for Admin Panel
 const allOrders = async (req, res) => {

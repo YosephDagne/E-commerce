@@ -4,7 +4,7 @@ import authUser from "../middleware/auth.js";
 import {
   placeOrder,
   placeOrderStripe,
-  placeOrderChapa,
+placeOrderChapa,
   allOrders,
   userOrders,
   updateStatus,
@@ -28,6 +28,5 @@ orderRouter.post("/userorders", authUser, userOrders);
 
 // verify payment
 orderRouter.post("/verifyStripeOrder", authUser, verifyStripeOrder);
-
 
 export default orderRouter;

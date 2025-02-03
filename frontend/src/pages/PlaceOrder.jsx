@@ -97,7 +97,7 @@ const PlaceOrder = () => {
           const chapaResponse = await axios.post(
             backendUrl + "/api/order/chapa",
             orderData,
-            { headers: { token } }
+            { headers: { token } } 
           );
           if (chapaResponse.data.success) {
             const { payment_url } = chapaResponse.data;
@@ -106,6 +106,7 @@ const PlaceOrder = () => {
           } else {
             toast.error(chapaResponse.data.message);
           }
+
           break;
 
         default:
@@ -237,12 +238,12 @@ const PlaceOrder = () => {
               <img className="h-5 mx-8" src={assets.stripe_logo} alt="" />
             </div>
             <div
-              onClick={() => setMethod("razorpay")}
+              onClick={() => setMethod("chapa")}
               className="flex items-center gap-3 border p-2 px-3 cursor-pointer "
             >
               <p
                 className={`min-w-3.5 h-3.5 border rounded-full  ${
-                  method === "razorpay" ? "bg-green-500" : ""
+                  method === "chapa" ? "bg-green-500" : ""
                 }`}
               ></p>
               <img className="h-5 mx-4" src={assets.chapa} alt="" />

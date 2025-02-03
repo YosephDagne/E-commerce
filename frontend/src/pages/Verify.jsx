@@ -34,6 +34,7 @@ const Verify = () => {
     }
   };
 
+
   useEffect(() => {
     verifyPayment();
   }, [token]);
