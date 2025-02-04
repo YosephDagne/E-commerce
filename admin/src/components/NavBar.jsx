@@ -1,4 +1,3 @@
-
 import React from "react";
 import { assets } from "../assets/assets";
 
@@ -8,7 +7,7 @@ const NavBar = ({ setToken }) => {
       <img className="w-[max(10%,80px)] h-12" src={assets.logo1} alt="" />
       <button
         onClick={() => setToken("")}
-        className="bg-gray-600 text-white px-2 py-5 sm:px-7 sm:py-2 rounded-full text-sm sm:text-sm mt-5"
+        className="bg-gray-800 text-white px-10 py-3 text-sm rounded-full hover:bg-green-500 hover:scale-105 transition-all duration-300 ease-in-out shadow-lg"
       >
         Logout
       </button>

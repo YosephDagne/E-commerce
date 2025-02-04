@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { backendUrl } from "../App";
 import { toast } from "react-toastify";
-const Login = ({setToken}) => {
+const Login = ({ setToken }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const onSubmitHandler = async (e) => {
@@ -52,7 +52,7 @@ const Login = ({setToken}) => {
             />
           </div>
           <button
-            className="mt-2 w-full py-2 px-4 rounded-md text-white bg-black"
+            className="bg-gray-800 text-white px-8 py-3 text-sm rounded-full hover:bg-green-500 hover:scale-105 transition-all duration-300 ease-in-out shadow-lg"
             type="submit"
           >
             Login
