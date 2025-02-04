@@ -1,7 +1,6 @@
 import orderModel from "../models/orderModel.js";
 import userModel from "../models/userModel.js";
 import Stripe from "stripe";
-import { Chapa } from "chapa-nodejs";
 // globale Variable
 const currency = "usd";
 const delivery_fee = 10;
@@ -9,8 +8,6 @@ const delivery_fee = 10;
 //gate way initialize
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
-
-const chapaInstanse = new Chapa(process.env.CHAPA_SECRET_KEY);
 
 // Placing order cash on delivery method
 const placeOrder = async (req, res) => {
@@ -111,51 +108,7 @@ const verifyStripeOrder = async (req, res) => {
   }
 };
 
-// Placing order using Chapa method
-
-// Placing order using Chapa method
-const placeOrderChapa = async (req, res) => {
-  try {
-    const { userId, items, amount, address } = req.body;
-    const { origin } = req.headers;
-
-    // Create order data
-    const orderData = {
-      userId,
-      items,
-      address,
-      amount,
-      paymentMethod: "chapa",
-      payment: false,
-      date: Date.now(),
-    };
-
-    // Save order to database
-    const newOrder = await orderModel.create(orderData);
-
-    // Chapa payment request
-    const chapaRequestData = {
-      amount: amount * 100,
-      currency: currency,
-      callback_url: `${origin}/verify?success=true&orderId=${newOrder._id}`,
-      cancel_url: `${origin}/verify?success=false&orderId=${newOrder._id}`,
-      order_id: newOrder._id.toString(),
-      email: req.user.email,
-      first_name: req.user.firstName,
-      last_name: req.user.lastName,
-      phone: req.user.phoneNumber,
-    };
-
-    const chapaPaymentLink = await Chapa.createPaymentLink(chapaRequestData);
-
-    // Send response with Chapa payment URL
-    res.json({ success: true, payment_url: chapaPaymentLink.payment_url });
-  } catch (error) {
-    console.error(error);
-    res.json({ success: false, message: error.message });
-  }
-};
-
+   
 // All Orders data for Admin Panel
 const allOrders = async (req, res) => {
   try {
@@ -202,7 +155,6 @@ const verifyChapaOrder = async (req, res) => {
   }
 };
 
-
 // Update Order Status for Admin Panel
 const updateStatus = async (req, res) => {
   try {
@@ -218,10 +170,9 @@ const updateStatus = async (req, res) => {
 export {
   placeOrder,
   placeOrderStripe,
-  placeOrderChapa,
   allOrders,
   userOrders,
   updateStatus,
   verifyStripeOrder,
-  verifyChapaOrder
+  verifyChapaOrder,
 };

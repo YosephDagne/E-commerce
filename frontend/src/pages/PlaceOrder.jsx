@@ -90,25 +90,7 @@ const PlaceOrder = () => {
           } else {
             toast.error(stripeResponse.data.message);
           }
-
           break;
-        case "chapa":
-          // API Calls for Chapa Payment Order
-          const chapaResponse = await axios.post(
-            backendUrl + "/api/order/chapa",
-            orderData,
-            { headers: { token } } 
-          );
-          if (chapaResponse.data.success) {
-            const { payment_url } = chapaResponse.data;
-            // Redirect user to Chapa payment page
-            window.location.replace(payment_url);
-          } else {
-            toast.error(chapaResponse.data.message);
-          }
-
-          break;
-
         default:
           break;
       }
@@ -236,17 +218,6 @@ const PlaceOrder = () => {
                 }`}
               ></p>
               <img className="h-5 mx-8" src={assets.stripe_logo} alt="" />
-            </div>
-            <div
-              onClick={() => setMethod("chapa")}
-              className="flex items-center gap-3 border p-2 px-3 cursor-pointer "
-            >
-              <p
-                className={`min-w-3.5 h-3.5 border rounded-full  ${
-                  method === "chapa" ? "bg-green-500" : ""
-                }`}
-              ></p>
-              <img className="h-5 mx-4" src={assets.chapa} alt="" />
             </div>
             <div
               onClick={() => setMethod("cod")}
