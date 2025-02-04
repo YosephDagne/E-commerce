@@ -179,8 +179,11 @@ const Add = ({ token }) => {
           />
         </div>
       </div>
+
       <div>
-        <p className="mb-2">Product Sizes</p>
+        <p className="mb-2 text-lg font-semibold text-gray-700">
+          Product Sizes
+        </p>
         <div className="flex gap-3">
           <div
             onClick={() =>
@@ -193,8 +196,8 @@ const Add = ({ token }) => {
           >
             <p
               className={`${
-                sizes.includes("S") ? "bg-pink-400" : "bg-slate-200"
-              } px-3 py-1 cursor-pointer`}
+                sizes.includes("S") ? "bg-pink-500 text-white" : "bg-slate-300"
+              } px-8 py-2 rounded-full cursor-pointer text-sm font-medium transition-all duration-300 ease-in-out transform hover:scale-105 hover:bg-pink-400 active:scale-95`}
             >
               S
             </p>
@@ -210,8 +213,8 @@ const Add = ({ token }) => {
           >
             <p
               className={`${
-                sizes.includes("M") ? "bg-pink-400" : "bg-slate-200"
-              } px-3 py-1 cursor-pointer`}
+                sizes.includes("M") ? "bg-pink-500 text-white" : "bg-slate-300"
+              } px-8 py-2 rounded-full cursor-pointer text-sm font-medium transition-all duration-300 ease-in-out transform hover:scale-105 hover:bg-pink-400 active:scale-95`}
             >
               M
             </p>
@@ -227,8 +230,8 @@ const Add = ({ token }) => {
           >
             <p
               className={`${
-                sizes.includes("L") ? "bg-pink-400" : "bg-slate-200"
-              } px-3 py-1 cursor-pointer`}
+                sizes.includes("L") ? "bg-pink-500 text-white" : "bg-slate-300"
+              } px-8 py-2 rounded-full cursor-pointer text-sm font-medium transition-all duration-300 ease-in-out transform hover:scale-105 hover:bg-pink-400 active:scale-95`}
             >
               L
             </p>
@@ -244,8 +247,8 @@ const Add = ({ token }) => {
           >
             <p
               className={`${
-                sizes.includes("XL") ? "bg-pink-400" : "bg-slate-200"
-              } px-3 py-1 cursor-pointer`}
+                sizes.includes("XL") ? "bg-pink-500 text-white" : "bg-slate-300"
+              } px-8 py-2 rounded-full cursor-pointer text-sm font-medium transition-all duration-300 ease-in-out transform hover:scale-105 hover:bg-pink-400 active:scale-95`}
             >
               XL
             </p>
@@ -261,14 +264,17 @@ const Add = ({ token }) => {
           >
             <p
               className={`${
-                sizes.includes("XXL") ? "bg-pink-400" : "bg-slate-200"
-              } px-3 py-1 cursor-pointer`}
+                sizes.includes("XXL")
+                  ? "bg-pink-500 text-white"
+                  : "bg-slate-300"
+              } px-8 py-2 rounded-full cursor-pointer text-sm font-medium transition-all duration-300 ease-in-out transform hover:scale-105 hover:bg-pink-400 active:scale-95`}
             >
               XXL
             </p>
           </div>
         </div>
       </div>
+
       <div className="flex gap-2 mt-2">
         <input
           onChange={() => setBestseller((prev) => !prev)}
@@ -280,7 +286,7 @@ const Add = ({ token }) => {
           Add to bestseller
         </label>
       </div>
-      <button className="bg-gray-500 text-white px-4 py-2 text-md rounded-lg shadow-md hover:bg-green-500 hover:scale-105 hover:rounded-full transition-all duration-300 ease-in-out active:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-green-500">
+      <button className="bg-gray-500 text-white px-8 py-2 text-md rounded-lg shadow-md hover:bg-green-500 hover:scale-105 hover:rounded-full transition-all duration-300 ease-in-out active:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-green-500">
         ADD
       </button>
     </form>
