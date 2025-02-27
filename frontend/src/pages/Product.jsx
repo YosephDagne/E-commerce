@@ -70,10 +70,10 @@ const Product = () => {
               {productData.sizes.map((item, index) => (
                 <button
                   onClick={() => setSize(item)}
-                  className={`border py-2 px-5 bg-red-100 rounded-lg text-gray-700 font-medium transition-all duration-300 ease-in-out ${
+                  className={`border py-2 px-5 rounded-lg text-gray-700 font-medium transition-all duration-600 ease-in-out ${
                     item === size
-                      ? "border-orange-500 bg-orange-200"
-                      : "hover:bg-red-200 focus:ring-2 focus:ring-red-500"
+                      ? "border-orange-500 bg-orange-200 text-white"
+                      : "hover:bg-green-200 focus:ring-2 focus:ring-yellow-500"
                   }`}
                   key={index}
                 >
@@ -82,9 +82,10 @@ const Product = () => {
               ))}
             </div>
           </div>
+
           <button
             onClick={() => addToCart(productData._id, size)}
-            className="bg-gray-500 text-white px-4 py-2 text-md rounded-lg shadow-md hover:bg-green-500 hover:scale-105 hover:rounded-full transition-all duration-300 ease-in-out active:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-green-500"
+            className="bg-gray-900 text-white px-5 py-3 text-md rounded-lg shadow-md hover:bg-green-500 hover:scale-105 hover:rounded-full transition-all duration-300 ease-in-out active:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-green-500 hover:border-2 hover:border-black"
           >
             ADD TO CART
           </button>

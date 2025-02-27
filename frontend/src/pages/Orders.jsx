@@ -7,7 +7,7 @@ const Orders = () => {
   const { backendUrl, token, currency } = useContext(ShopContext);
   const [orderData, setOrderData] = React.useState([]);
 
-  const loadOrderData = async () => {
+  const loadOrderData = async (orderId) => {
     try {
       if (!token) {
         return null;
@@ -32,7 +32,17 @@ const Orders = () => {
         });
         setOrderData(allOrdersItem.reverse());
       }
-    } catch (error) {}
+
+      // If needed, add logic to track only the selected orderId here:
+      if (orderId) {
+        const specificOrder = allOrdersItem.filter(
+          (item) => item.orderId === orderId
+        );
+        console.log("Tracking Order:", specificOrder);
+      }
+    } catch (error) {
+      console.error("Error loading orders:", error);
+    }
   };
 
   useEffect(() => {
@@ -78,14 +88,13 @@ const Orders = () => {
             <div className="md:w-1/2 flex justify-between ">
               <div className="flex items-center gap-2 ">
                 <p className="min-w-2 h-2 rounded-full bg-green-500"></p>
-
                 <p className="text-sm md:text-base">{item.status}</p>
               </div>
               <button
-                onClick={loadOrderData}
-                className="bg-gray-500 text-white px-4 py-2 text-md rounded-lg shadow-md hover:bg-green-500 hover:scale-105 hover:rounded-full transition-all duration-300 ease-in-out active:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-green-500"
+                onClick={() => loadOrderData(item.orderId)} // Pass the orderId of the clicked item
+                className="bg-gray-900 text-white px-4 py-2 text-md rounded-lg shadow-md hover:bg-green-500 hover:scale-105 hover:rounded-full transition-all duration-300 ease-in-out active:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-green-500 hover:border-2 hover:border-black"
               >
-                Track Order
+                TRACK ORDER
               </button>
             </div>
           </div>
