@@ -44,6 +44,7 @@ const Navbar = () => {
           <p>CONTACT</p>
           <hr className="w-2/4 border-none h-[2px] bg-gray-700" hidden />
         </NavLink>
+        <a href="https://e-commerce-six-vert-73.vercel.app/">Admin pannel</a>
       </ul>
       <div className="flex items-center gap-6">
         <img
