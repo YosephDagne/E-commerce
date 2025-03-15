@@ -10,12 +10,12 @@ import orderRouter from "./routes/orderRoute.js";
 
 // App config
 const app = express();
-const port = process.env.PORT;
+const port = process.env.PORT || 4000; 
 
 connectDB();
 connectCloudinary();
 
-// Middle wares
+// Middleware
 app.use(express.json());
 app.use(cors());
 
@@ -28,6 +28,7 @@ app.get("/", (req, res) => {
   res.send("API Working");
 });
 
+// Start server
 app.listen(port, () => {
-  console.log(`Server is running on port, ${process.env.PORT}`);
+  console.log(`Server is running on port ${port}`);
 });
