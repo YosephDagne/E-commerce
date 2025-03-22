@@ -110,8 +110,7 @@ const ShopContextProvider = (props) => {
       }
     } catch (error) {
       console.log(error);
-      toast.error(error.messsge);
-    }
+      toast.error(error.message);}
   };
 
   const getUserCart = async (token) => {
@@ -126,8 +125,7 @@ const ShopContextProvider = (props) => {
       }
     } catch (error) {
       console.log(error);
-      toast.error(error.messsge);
-    }
+      toast.error(error.message);}
   };
 
   useEffect(() => {
