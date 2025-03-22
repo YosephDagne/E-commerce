@@ -44,7 +44,13 @@ const Navbar = () => {
           <p>CONTACT</p>
           <hr className="w-2/4 border-none h-[2px] bg-gray-700" hidden />
         </NavLink>
-        <a href="https://e-commerce-six-vert-73.vercel.app/">Admin pannel</a>
+        <NavLink
+          to="http://localhost:5176/"
+          className="flex flex-col items-center gap-1"
+        >
+          <p>ADMIN PANEL</p>
+          <hr className="w-2/4 border-none h-[2px] bg-gray-700" hidden />
+        </NavLink>
       </ul>
       <div className="flex items-center gap-6">
         <img
@@ -60,8 +66,6 @@ const Navbar = () => {
             className="w-5 cursor-pointer"
             alt=""
           />
-
-          {/* ----------------------Dropdown Menu--------------------------------------- */}
 
           {token && (
             <div className="group-hover:block hidden absolute dropdown-menu right-0 pt-4">
@@ -83,7 +87,6 @@ const Navbar = () => {
         <Link to="/cart" className="relative ">
           <img src={assets.cart_icon} className="w-5 min-w-5" alt="" />
           <p className="absolute right-[-5px] w-4 text-center leading-4 bg-black text-white aspect-square rounded-full text-[-8px]">
-            {" "}
             {getCartCount()}
           </p>
         </Link>
@@ -94,7 +97,6 @@ const Navbar = () => {
           alt="menu-icon"
         />
       </div>
-      {/* Sidebar menu for small screen  */}
       <div
         className={`absolute top-0 right-0 bottom-0 overflow-hidden bg-white transition-all ${
           visible ? "w-full" : "w-0"
@@ -135,6 +137,13 @@ const Navbar = () => {
             to="/contact"
           >
             CONTACT
+          </NavLink>
+          <NavLink
+            onClick={() => setVisible(false)}
+            className="py-2 pl-6 border"
+            to="https://e-commerce-six-vert-73.vercel.app/"
+          >
+            ADMIN PANEL
           </NavLink>
         </div>
       </div>
