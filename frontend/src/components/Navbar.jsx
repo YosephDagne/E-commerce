@@ -138,13 +138,13 @@ const Navbar = () => {
           >
             CONTACT
           </NavLink>
-          <NavLink
+          {/* <NavLink
             onClick={() => setVisible(false)}
             className="py-2 pl-6 border"
             to="https://e-commerce-six-vert-73.vercel.app/"
           >
             ADMIN PANEL
-          </NavLink>
+          </NavLink> */}
         </div>
       </div>
     </div>
