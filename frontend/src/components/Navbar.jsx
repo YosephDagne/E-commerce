@@ -84,7 +84,7 @@ const Navbar = () => {
           </p>
         </Link>
         <a
-          href="https://e-commerce-admin-roan-rho.vercel.app/"
+          href="https://e-commerce-admin-mocha-delta.vercel.app/"
           target="_blank"
           rel="noopener noreferrer"
           className="bg-gray-700 text-white px-4 py-2 text-md font-semibold rounded-full ring-2 ring-offset-gray-700 shadow-md border-2 border-black hover:bg-green-500 hover:scale-105 transition-all duration-300 ease-in-out active:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-green-500"
