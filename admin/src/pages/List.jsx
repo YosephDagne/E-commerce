@@ -70,9 +70,9 @@ const List = ({ token }) => {
             </p>
             <p
               onClick={() => removeProduct(item._id)}
-              className="text-right md:text-center cursor-pointer text-lg"
+              className="text-right md:text-center cursor-pointer text-lg font-bold text-gray-900 hover:text-red-600 hover:bg-gray-300 px-3 py-2 rounded-lg transition-all duration-300"
             >
-              X
+              Remove
             </p>
           </div>
         ))}
