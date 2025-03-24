@@ -44,13 +44,13 @@ const Navbar = () => {
           <p>CONTACT</p>
           <hr className="w-2/4 border-none h-[2px] bg-gray-700" hidden />
         </NavLink>
-        <NavLink
+        {/* <NavLink
           to="http://localhost:5176/"
           className="flex flex-col items-center gap-1"
         >
           <p>ADMIN PANEL</p>
           <hr className="w-2/4 border-none h-[2px] bg-gray-700" hidden />
-        </NavLink>
+        </NavLink> */}
       </ul>
       <div className="flex items-center gap-6">
         <img
@@ -138,13 +138,14 @@ const Navbar = () => {
           >
             CONTACT
           </NavLink>
-          {/* <NavLink
-            onClick={() => setVisible(false)}
-            className="py-2 pl-6 border"
-            to="https://e-commerce-six-vert-73.vercel.app/"
+          {/* <a
+            href="https://github.com/YosephDagne/E-commerce/tree/main/admin"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex flex-col items-center gap-1"
           >
-            ADMIN PANEL
-          </NavLink> */}
+            <p>ADMIN PANEL</p>
+          </a> */}
         </div>
       </div>
     </div>
