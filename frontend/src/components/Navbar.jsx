@@ -4,7 +4,7 @@ import { Link, NavLink } from "react-router-dom";
 import { ShopContext } from "../context/ShopContext";
 
 const Navbar = () => {
-  const [visible, setVisible] = React.useState(false);
+  const [visible, setVisible] = useState(false);
 
   const {
     setShowSearch,
@@ -44,13 +44,6 @@ const Navbar = () => {
           <p>CONTACT</p>
           <hr className="w-2/4 border-none h-[2px] bg-gray-700" hidden />
         </NavLink>
-        {/* <NavLink
-          to="http://localhost:5176/"
-          className="flex flex-col items-center gap-1"
-        >
-          <p>ADMIN PANEL</p>
-          <hr className="w-2/4 border-none h-[2px] bg-gray-700" hidden />
-        </NavLink> */}
       </ul>
       <div className="flex items-center gap-6">
         <img
@@ -84,12 +77,20 @@ const Navbar = () => {
             </div>
           )}
         </div>
-        <Link to="/cart" className="relative ">
+        <Link to="/cart" className="relative">
           <img src={assets.cart_icon} className="w-5 min-w-5" alt="" />
-          <p className="absolute right-[-5px] w-4 text-center leading-4 bg-black text-white aspect-square rounded-full text-[-8px]">
+          <p className="absolute right-[-5px] w-4 text-center leading-4 bg-black text-white aspect-square rounded-full text-[10px]">
             {getCartCount()}
           </p>
         </Link>
+        <a
+          href="https://e-commerce-admin-roan-rho.vercel.app/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="bg-gray-900 text-white px-4 py-2 text-md rounded-lg shadow-md hover:bg-green-500 hover:scale-105 hover:rounded-full transition-all duration-300 ease-in-out active:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-green-500 hover:border-2 hover:border-black"
+        >
+          Admin Panel
+        </a>
         <img
           onClick={() => setVisible(true)}
           src={assets.menu_icon}
@@ -100,7 +101,7 @@ const Navbar = () => {
       <div
         className={`absolute top-0 right-0 bottom-0 overflow-hidden bg-white transition-all ${
           visible ? "w-full" : "w-0"
-        } `}
+        }`}
       >
         <div className="flex flex-col text-gray-600">
           <div
@@ -138,14 +139,6 @@ const Navbar = () => {
           >
             CONTACT
           </NavLink>
-          {/* <a
-            href="https://github.com/YosephDagne/E-commerce/tree/main/admin"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex flex-col items-center gap-1"
-          >
-            <p>ADMIN PANEL</p>
-          </a> */}
         </div>
       </div>
     </div>
