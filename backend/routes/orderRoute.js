@@ -8,6 +8,8 @@ import {
   userOrders,
   updateStatus,
   verifyStripeOrder,
+  // placeOrderChapa,
+  // verifyChapaOrder,
 } from "../controllers/orderController.js";
 
 // Admin Features
@@ -19,6 +21,7 @@ orderRouter.post("/status", adminAuth, updateStatus);
 
 orderRouter.post("/place", authUser, placeOrder);
 orderRouter.post("/stripe", authUser, placeOrderStripe);
+// orderRouter.post("/chapa", authUser, placeOrderChapa);
 
 // User Features
 
@@ -26,5 +29,6 @@ orderRouter.post("/userorders", authUser, userOrders);
 
 // verify payment
 orderRouter.post("/verifyStripeOrder", authUser, verifyStripeOrder);
+// orderRouter.post("/verifyChapaOrder", authUser, verifyChapaOrder);
 
 export default orderRouter;

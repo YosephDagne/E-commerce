@@ -1,13 +1,14 @@
 import orderModel from "../models/orderModel.js";
 import userModel from "../models/userModel.js";
 import Stripe from "stripe";
-// globale Variable
+// import { Chapa } from "chapa-nodejs";
 const currency = "usd";
 const delivery_fee = 10;
 
 //gate way initialize
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+// const chapa = new Chapa(process.env.CHAPA_SECRET_KEY);
 
 // Placing order cash on delivery method
 const placeOrder = async (req, res) => {
@@ -107,8 +108,70 @@ const verifyStripeOrder = async (req, res) => {
     res.json({ success: false, message: error.message });
   }
 };
+// const placeOrderChapa = async (req, res) => {
+//   try {
+//     const { userId, items, amount, address } = req.body;
+//     const { origin } = req.headers;
 
-   
+//     // Save order as pending in database
+//     const orderData = {
+//       userId,
+//       items,
+//       address,
+//       amount,
+//       paymentMethod: "chapa",
+//       payment: false, // Payment is false initially
+//       date: Date.now(),
+//     };
+
+//     const newOrder = new orderModel(orderData);
+//     await newOrder.save();
+
+//     // Generate Chapa Payment URL
+//     const response = await chapa.initialize({
+//       amount: amount + delivery_fee,
+//       currency: "ETB",
+//       email: req.body.email,
+//       first_name: address.firstName,
+//       last_name: address.lastName,
+//       phone_number: address.phone,
+//       tx_ref: newOrder._id,
+//       callback_url: `${origin}/verify-chapa?orderId=${newOrder._id}`,
+//       return_url: `${origin}/verify?success=true&orderId=${newOrder._id}`,
+//     });
+
+//     if (response.status === "success") {
+//       res.json({ success: true, chapa_url: response.data.checkout_url });
+//     } else {
+//       res.json({ success: false, message: response.message });
+//     }
+//   } catch (error) {
+//     console.error(error);
+//     res.json({ success: false, message: error.message });
+//   }
+// };
+
+// // Verify Chapa Order
+// const verifyChapaOrder = async (req, res) => {
+//   const { orderId } = req.query;
+
+//   try {
+//     // Verify payment with Chapa API
+//     const response = await chapa.verify(orderId);
+
+//     if (response.status === "success" && response.data.status === "success") {
+//       // Update order as paid
+//       await orderModel.findByIdAndUpdate(orderId, { payment: true });
+//       res.json({ success: true, message: "Payment verified successfully" });
+//     } else {
+//       res.json({ success: false, message: "Payment verification failed" });
+//     }
+//   } catch (error) {
+//     console.error(error);
+//     res.json({ success: false, message: error.message });
+//   }
+// };
+
 // All Orders data for Admin Panel
 const allOrders = async (req, res) => {
   try {
@@ -132,29 +195,6 @@ const userOrders = async (req, res) => {
   }
 };
 
-// verfiy chapa payment
-
-// Verify Chapa payment
-const verifyChapaOrder = async (req, res) => {
-  const { orderId, success, userId } = req.body;
-
-  try {
-    if (success === "true") {
-      // Mark the order as paid
-      await orderModel.findByIdAndUpdate(orderId, { payment: true });
-      await userModel.findByIdAndUpdate(userId, { cartData: {} });
-      res.json({ success: true });
-    } else {
-      // Delete the order if payment failed
-      await orderModel.findByIdAndDelete(orderId);
-      res.json({ success: false });
-    }
-  } catch (error) {
-    console.error(error);
-    res.json({ success: false, message: error.message });
-  }
-};
-
 // Update Order Status for Admin Panel
 const updateStatus = async (req, res) => {
   try {
@@ -174,5 +214,6 @@ export {
   userOrders,
   updateStatus,
   verifyStripeOrder,
-  verifyChapaOrder,
-};
+//   verifyChapaOrder,
+//   placeOrderChapa,
+ };
